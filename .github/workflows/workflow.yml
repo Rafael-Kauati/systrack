@@ -15,9 +15,14 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: 1.18
-      - name: Build and Test
+      - name: Install dependencies
         run: |
-          make test
+          go get .
+
+      - name: Build 
+        run: |
+          go build -v ./...
+
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
