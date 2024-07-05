@@ -1,17 +1,16 @@
 package handlers
 
 import (
-    "encoding/json"
     "net/http"
     "systrack/services"
+    "systrack/utils"
 )
 
 func GetResources(w http.ResponseWriter, r *http.Request) {
     resources, err := services.GetResourceUsage()
     if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
+        utils.JSONResponse(w, http.StatusInternalServerError, map[string]string{"error": err.Error()})
         return
     }
-    w.Header().Set("Content-Type", "application/json")
-    json.NewEncoder(w).Encode(resources)
+    utils.JSONResponse(w, http.StatusOK, resources)
 }

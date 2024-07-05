@@ -4,6 +4,7 @@ go 1.22.4
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/distatus/battery v0.11.0 // indirect
 	github.com/jstemmer/go-junit-report/v2 v2.1.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/shirou/gopsutil v3.21.11+incompatible // indirect
@@ -13,4 +14,5 @@ require (
 	github.com/tklauser/numcpus v0.8.0 // indirect
 	golang.org/x/sys v0.21.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
+	howett.net/plist v1.0.0 // indirect
 )
