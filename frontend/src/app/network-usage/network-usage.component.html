@@ -1,0 +1,12 @@
+<h2>Network usage</h2>
+
+<div>
+    <p *ngIf="bytesRecv !== null">Bytes Received : {{ bytesRecv }}%</p>
+    <p *ngIf="bytesRecv === null">Loading...</p>
+  </div>
+  
+  <div>
+    <p *ngIf="bytesSent !== null">Bytes Sent: {{ bytesSent }}%</p>
+    <p *ngIf="bytesSent === null">Loading...</p>
+  </div>
+  

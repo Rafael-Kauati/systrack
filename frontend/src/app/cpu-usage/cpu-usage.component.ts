@@ -16,9 +16,7 @@ export class CpuUsageComponent implements OnInit {
   async ngOnInit() {
     try {
       const data = await this.apiService.getCPUUsage();
-      console.log('API Response:', data); 
       this.cpuUsage = parseFloat(data); 
-      console.log("CPU usage : ", this.cpuUsage);
     } catch (error) {
       console.error('Error fetching CPU usage:', error);
     }
