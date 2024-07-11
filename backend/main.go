@@ -1,22 +1,32 @@
 package main
 
+
 import (
     "flag"
     "log"
     "net/http"
     "systrack/handlers"
+    "github.com/rs/cors"
 )
 
 func main() {
-    // Define a flag for the port with a default value of ":8000"
     port := flag.String("port", ":8000", "Specify the port to run the server on")
-    
-    // Parse the command-line flags
     flag.Parse()
-    
-    http.HandleFunc("/api/resources", handlers.GetResources)
-    
-    // Log the message with the specified or default port
+
+    // Define CORS options
+    c := cors.New(cors.Options{
+        AllowedOrigins: []string{"*"},     // Allow all origins
+        AllowedMethods: []string{"GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS"},
+        AllowedHeaders: []string{"*"},     // Allow all headers
+        Debug:          true,              // Enable debug output (optional)
+    })
+
+    // Create a new CORS handler
+    handler := c.Handler(http.HandlerFunc(handlers.GetResources))
+
+    // Register handler with CORS middleware
+    http.Handle("/api/resources", handler)
+
     log.Printf("Server is running and listening on port %s\n", *port)
     log.Fatal(http.ListenAndServe(*port, nil))
 }
