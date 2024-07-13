@@ -1,6 +1,11 @@
 <div>
-    <h2>Memory usage</h2>
-    <p *ngIf="memoryUsage !== null">Memory Usage: {{ memoryUsage }}%</p>
-    <p *ngIf="memoryUsage === null">Loading...</p>
+  <h2>Memory Usage</h2>
+  <p *ngIf="memoryUsage !== null">Memory Usage: {{ memoryUsage }}%</p>
+  <p *ngIf="memoryUsage === null">Loading...</p>
+  <div *ngIf="memoryUsage !== null">
+    <canvas baseChart
+            [data]="pieChartData"
+            [options]="pieChartOptions">
+    </canvas>
   </div>
-  
+</div>

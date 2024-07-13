@@ -1,6 +1,11 @@
 <div>
-    <h2>Battery remaining</h2>
-    <p *ngIf="battery !== null">Battery: {{ battery }}%</p>
-    <p *ngIf="battery === null">Loading...</p>
+  <h2>Battery Remaining</h2>
+  <p *ngIf="battery !== null">Battery: {{ battery }}%</p>
+  <p *ngIf="battery === null">Loading...</p>
+  <div *ngIf="battery !== null">
+    <canvas baseChart
+            [data]="pieChartData"
+            [options]="pieChartOptions">
+    </canvas>
   </div>
-  
+</div>

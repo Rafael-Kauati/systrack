@@ -1,6 +1,11 @@
 <div>
-    <h2>Disk Usage</h2>
-    <p *ngIf="diskUsage !== null">Disk Usage: {{ diskUsage }}%</p>
-    <p *ngIf="diskUsage === null">Loading...</p>
+  <h2>Disk Usage</h2>
+  <p *ngIf="diskUsage !== null">Disk Usage: {{ diskUsage }}%</p>
+  <p *ngIf="diskUsage === null">Loading...</p>
+  <div *ngIf="diskUsage !== null">
+    <canvas baseChart
+            [data]="pieChartData"
+            [options]="pieChartOptions">
+    </canvas>
   </div>
-  
+</div>

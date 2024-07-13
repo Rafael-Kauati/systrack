@@ -1,6 +1,11 @@
 <div>
-    <h2>CPU Usage</h2>
-    <p *ngIf="cpuUsage !== null">CPU Usage: {{ cpuUsage }}%</p>
-    <p *ngIf="cpuUsage === null">Loading...</p>
+  <h2>CPU Usage</h2>
+  <p *ngIf="cpuUsage !== null">CPU Usage: {{ cpuUsage }}%</p>
+  <p *ngIf="cpuUsage === null">Loading...</p>
+  <div *ngIf="cpuUsage !== null">
+    <canvas baseChart
+            [data]="pieChartData"
+            [options]="pieChartOptions">
+    </canvas>
   </div>
-  
+</div>
