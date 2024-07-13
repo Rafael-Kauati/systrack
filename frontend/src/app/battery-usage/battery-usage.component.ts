@@ -16,10 +16,10 @@ import { ApiService } from '../api.service';
 export class BatteryUsageComponent implements OnInit {
   battery: number | null = null;
   pieChartData: ChartConfiguration<'pie'>['data'] = {
-    labels: [ 'Used Battery', 'Free Battery'],
+    labels: [ 'Free Battery'],
     datasets: [{
-      data: [0, 100], 
-      backgroundColor: [ '#FF6384', '#36A2EB']
+      data: [ 100], 
+      backgroundColor: [  '#36A2EB']
     }]
   };
   pieChartOptions: ChartOptions<'pie'> = {
