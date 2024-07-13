@@ -3,13 +3,11 @@ package handlers
 import (
     "net/http"
     "systrack/services"
-    "systrack/utils"
+    "github.com/gin-gonic/gin"
 )
 
-func GetResources(w http.ResponseWriter, r *http.Request) {
-    // Parse query parameters to determine which resource data to return
-    query := r.URL.Query()
-    resourceType := query.Get("type") // Example: "cpu", "memory", "disk", "network", "battery"
+func GetResources(c *gin.Context) {
+    resourceType := c.Query("type") 
 
     var (
         data interface{}
@@ -26,7 +24,7 @@ func GetResources(w http.ResponseWriter, r *http.Request) {
     case "network":
         bytesSent, bytesRecv, netErr := services.GetNetworkUsage()
         if netErr != nil {
-            utils.JSONResponse(w, http.StatusInternalServerError, map[string]string{"error": netErr.Error()})
+            c.JSON(http.StatusInternalServerError, gin.H{"error": netErr.Error()})
             return
         }
         data = map[string]int64{
@@ -40,9 +38,9 @@ func GetResources(w http.ResponseWriter, r *http.Request) {
     }
 
     if err != nil {
-        utils.JSONResponse(w, http.StatusInternalServerError, map[string]string{"error": err.Error()})
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
         return
     }
 
-    utils.JSONResponse(w, http.StatusOK, data)
+    c.JSON(http.StatusOK, data)
 }
